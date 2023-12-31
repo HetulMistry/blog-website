@@ -1,19 +1,20 @@
-import { Link } from "react-router-dom";
-import logo from "../imgs/logo.png";
+import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
+import logo from "../imgs/logo.png";
 
 const Navbar = () => {
   const [searchBoxVisibility, setSearchBoxVisibility] = useState(false);
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="flex-none w-10">
-        <img src={logo} alt="logo" className="w-full" />
-      </Link>
+    <>
+      <nav className="navbar">
+        <Link to="/" className="flex-none w-10">
+          <img src={logo} alt="logo" className="w-full" />
+        </Link>
 
-      <div
-        className={
-          `
+        <div
+          className={
+            `
           absolute
           bg-white
           w-full
@@ -31,73 +32,76 @@ const Navbar = () => {
           md:p-0
           md:w-auto
           md:show
-        ` + (searchBoxVisibility ? "show" : "hide")
-        }
-      >
-        <input
-          type="text"
-          placeholder="Search"
-          className="
-            w-full
-            bg-grey
-            p-4
-            pl-6
-            pr-[12%]
-            rounded-full
-            placeholder:text-dark-grey md:pl-12
-            md:w-auto
-            md:p-6
-          "
-        />
-        <i
-          className="
-            fi
-            fi-rr-search
-            absolute
-            right-[10%]
-            top-1/2
-            -translate-y-1/2
-            text-xl
-            text-dark-grey
-            md:pointer-events-none
-            md:left-5
-          "
-        ></i>
-      </div>
-
-      <div className="flex items-center gap-3 ml-auto md:gap-6">
-        <button
-          className="
-            md:hidden
-           bg-grey
-            w-12
-            h-12
-            rounded-full
-            flex
-            items-center
-            justify-center
-          "
-          onClick={() =>
-            setSearchBoxVisibility((currentValue) => !currentValue)
+          ` + (searchBoxVisibility ? "show" : "hide")
           }
         >
-          <i className="fi fi-rr-search text-xl"></i>
-        </button>
+          <input
+            type="text"
+            placeholder="Search"
+            className="
+          w-full
+          bg-grey
+          p-4
+          pl-6
+          pr-[12%]
+          rounded-full
+          placeholder:text-dark-grey md:pl-12
+          md:w-auto
+          md:p-6
+          "
+          />
+          <i
+            className="
+          fi
+          fi-rr-search
+          absolute
+          right-[10%]
+          top-1/2
+          -translate-y-1/2
+          text-xl
+          text-dark-grey
+          md:pointer-events-none
+          md:left-5
+          "
+          ></i>
+        </div>
 
-        <Link to="editor" className="hidden gap-2 link md:flex">
-          <p>Write</p>
-          <i className="fi fi-rr-file-edit"></i>
-        </Link>
+        <div className="flex items-center gap-3 ml-auto md:gap-6">
+          <button
+            className="
+          md:hidden
+          bg-grey
+          w-12
+          h-12
+          rounded-full
+          flex
+          items-center
+          justify-center
+          "
+            onClick={() =>
+              setSearchBoxVisibility((currentValue) => !currentValue)
+            }
+          >
+            <i className="fi fi-rr-search text-xl"></i>
+          </button>
 
-        <Link className="btn-dark py-2" to="/signin">
-          Sign In
-        </Link>
+          <Link to="editor" className="hidden gap-2 link md:flex">
+            <p>Write</p>
+            <i className="fi fi-rr-file-edit"></i>
+          </Link>
 
-        <Link className="btn-light py-2 hidden md:block" to="/signup">
-          Sign Up
-        </Link>
-      </div>
-    </nav>
+          <Link className="btn-dark py-2" to="/sign-in">
+            Sign In
+          </Link>
+
+          <Link className="btn-light py-2 hidden md:block" to="/sign-up">
+            Sign Up
+          </Link>
+        </div>
+      </nav>
+
+      <Outlet />
+    </>
   );
 };
 
