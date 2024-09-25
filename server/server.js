@@ -1,4 +1,4 @@
-import express, { json, response } from "express";
+import express from "express";
 import { nanoid } from "nanoid";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
